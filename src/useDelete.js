@@ -16,22 +16,22 @@ const reducer = (state, action) =>{
       }
     }
   }
-const useDelete = () => {
-    const [ data, dispacth ] = useReducer(reducer, {
-        loading: false,
-        data: {}
-    })
-    const remove = url => {
-        dispacth({ type: 'REQUEST' })
-        axios
-            .delete(url)
-            .then(() => {
-                dispacth({
-                    type: 'SUCCESS'
-                })
-            })
-    }
-    return [data, remove]
-}
+  const useDelete = () => {
+      const [ data, dispacth ] = useReducer(reducer, {
+          loading: false,
+          data: {}
+      })
+      const remove = url => {
+          dispacth({ type: 'REQUEST' })
+          axios
+              .delete(url)
+              .then(() => {
+                  dispacth({
+                      type: 'SUCCESS'
+                  })
+              })
+      }
+      return [data, remove]
+  }
 
 export default useDelete

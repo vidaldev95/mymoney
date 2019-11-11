@@ -15,24 +15,26 @@ const reducer = (state, action) =>{
         data: action.data
       }
     }
+    return state
   }
-const usePost = (url) => {
-    const [ data, dispacth ] = useReducer(reducer, {
-        loading: false,
-        data: {}
-    })
-    const post = data => {
-        dispacth({ type: 'REQUEST' })
-        axios
-            .post(url, data)
-            .then(res => {
-                dispacth({
-                    type: 'SUCCESS',
-                    data: res.data
-                })
-            })
-    }
-    return [data, post]
-}
+  
+  const usePost = (url) => {
+      const [ data, dispacth ] = useReducer(reducer, {
+          loading: false,
+          data: {}
+      })
+      const post = data => {
+          dispacth({ type: 'REQUEST' })
+          axios
+              .post(url, data)
+              .then(res => {
+                  dispacth({
+                      type: 'SUCCESS',
+                      data: res.data
+                  })
+              })
+      }
+      return [data, post]
+  }
 
 export default usePost

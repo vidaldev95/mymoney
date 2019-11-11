@@ -18,7 +18,6 @@ import axios from 'axios'
   }
   
   const useGet = url => {
-  
     const [ data, dispacth ] = useReducer(reducer, {
       loading: true,
       data: {}
@@ -33,7 +32,6 @@ import axios from 'axios'
         })
     }, [])
     return data
-  
-  }
+}
 
   export default useGet

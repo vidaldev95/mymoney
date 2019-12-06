@@ -12,6 +12,7 @@ const Mouth = () => {
         return  <span>Carregando...</span>
     if(Object.keys(data.data).length >0) {
         return(
+
             <table className='table'>
                 <thead>
                     <tr>

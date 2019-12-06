@@ -1,29 +1,19 @@
 import React from 'react'
-import Rest from './rest'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './elements/Header'
-import Mouth from './Mouth'
-import AddMouth from './AddMouth'
+import Home from './pages/Home'
+import Movimentacoes from './pages/Movimentacoes'
+
 
 function App() {
-  //const data = useGet('movimentacoes/2019-8')
-
-  //const [postData, post] = usePost('movimentacoes/2019-8')
-  //const [deleteData, remove] = useDelete()
-
-  const saveNew = ()=>{
-    //post({valor: 10, descricao: 'teste'})
-  }
-  const doRemove = () =>{
-    //remove('movimentacoes/2019-8/-LtN2wc6mG3wFNGmvkf4')
-  }
   return (
-    <div>
-      <Header />
-      <div className='container'>
-        <AddMouth />      
-        <Mouth />
+    <Router>
+      <div>
+        <Header />
+        <Route path='/' exact component={Home} />
+        <Route path='/movimentacoes/:data' component={Movimentacoes} />
       </div>
-    </div>
+    </Router>
   );
 }
 

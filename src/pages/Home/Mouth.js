@@ -28,15 +28,15 @@ const Mouth = () => {
                     Object
                         .keys(data.data)
                         .map(mes => {
-                        return(
-                            <tr key={mes}>
-                            <td><Link to={`/movimentacoes/${mes}`}>{mes}</Link></td>
-                            <td>{data.data[mes].previsao_entrada}</td>
-                            <td>{data.data[mes].entrada}</td>
-                            <td>{data.data[mes].previsao_saida}</td>
-                            <td>{data.data[mes].saida}</td>
-                            </tr>
-                        )
+                            return(
+                                <tr key={mes}>
+                                    <td><Link to={`/movimentacoes/${mes}`}>{mes}</Link></td>
+                                    <td>{data.data[mes].previsao_entrada}</td>
+                                    <td>{data.data[mes].entrada}</td>
+                                    <td>{data.data[mes].previsao_saida}</td>
+                                    <td>{data.data[mes].saida}</td>
+                                </tr>
+                            )
                         })
                     }
 

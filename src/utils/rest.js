@@ -26,45 +26,43 @@ const reducer = (state, action) =>{
   const init = baseURL => {
     const useGet = resource => {
         const [ data, dispacth ] = useReducer(reducer, INITIAL_STATE)
-      
-        useEffect(() => {
+        const carregar = async() => {
           dispacth({ type: 'REQUEST' })
-          axios
-            .get(baseURL + resource + '.json')
-            .then(res => {
-              dispacth({ type: 'SUCCESS', data: res.data })
-            })
-        }, [])
-        return data
+          const res = await axios.get(baseURL + resource + '.json')
+          dispacth({ type: 'SUCCESS', data: res.data })
+        }
+        useEffect(() => {
+          carregar()
+        }, [resource])
+
+        return {
+          ...data,
+          refetch: carregar
+        }
     }
 
     const usePost = (resource) => {
         const [ data, dispacth ] = useReducer(reducer, INITIAL_STATE)
-        const post = data => {
+        const post = async(data) => {
             dispacth({ type: 'REQUEST' })
-            axios
-                .post(baseURL + resource + '.json', data)
-                .then(res => {
-                    dispacth({
-                        type: 'SUCCESS',
-                        data: res.data
-                    })
-                })
+            const res = await axios.post(baseURL + resource + '.json', data)         
+            dispacth({
+                type: 'SUCCESS',
+                data: res.data
+            })               
         }
         return [data, post]
     }
 
     const useDelete = () => {
         const [ data, dispacth ] = useReducer(reducer, INITIAL_STATE)
-        const remove = resource => {
+        const remove = async (resource) => {
             dispacth({ type: 'REQUEST' })
-            axios
-                .delete(baseURL + resource + '.json')
-                .then(() => {
-                    dispacth({
-                        type: 'SUCCESS'
-                    })
-                })
+            await axios
+                .delete(baseURL + resource + '.json')                
+                dispacth({
+                    type: 'SUCCESS'
+                })               
         }
         return [data, remove]
     }
